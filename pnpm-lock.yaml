@@ -11,6 +11,9 @@ importers:
       '@base-ui/react':
         specifier: ^1.2.0
         version: 1.2.0(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@better-auth/prisma-adapter':
+        specifier: ^1.5.3
+        version: 1.5.3(@better-auth/core@1.5.3(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.3.2(zod@3.25.76))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1))(@better-auth/utils@0.3.1)(@prisma/client@7.4.2(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3))(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))
       '@prisma/adapter-pg':
         specifier: ^7.4.2
         version: 7.4.2
@@ -19,7 +22,7 @@ importers:
         version: 7.4.2(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3)
       better-auth:
         specifier: ^1.5.3
-        version: 1.5.3(@prisma/client@7.4.2(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3))(mysql2@3.15.3)(next@16.1.6(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(pg@8.19.0)(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 1.5.3(@better-auth/prisma-adapter@1.5.3(@better-auth/core@1.5.3(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.3.2(zod@3.25.76))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1))(@better-auth/utils@0.3.1)(@prisma/client@7.4.2(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3))(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)))(@prisma/client@7.4.2(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3))(mysql2@3.15.3)(next@16.1.6(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(pg@8.19.0)(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -35,6 +38,9 @@ importers:
       next:
         specifier: 16.1.6
         version: 16.1.6(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       pg:
         specifier: ^8.19.0
         version: 8.19.0
@@ -50,6 +56,9 @@ importers:
       shadcn:
         specifier: ^3.8.5
         version: 3.8.5(@types/node@20.19.35)(typescript@5.9.3)
+      sonner:
+        specifier: ^2.0.7
+        version: 2.0.7(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       tailwind-merge:
         specifier: ^3.5.0
         version: 3.5.0
@@ -281,6 +290,14 @@ packages:
     peerDependencies:
       '@better-auth/core': 1.5.3
       '@better-auth/utils': ^0.3.0
+
+  '@better-auth/prisma-adapter@1.5.3':
+    resolution: {integrity: sha512-hi+t9Of4+u5tEpZBPLXUVZBfs3oI9wWLxSPPOT+sKKdCeeR/83S57pVEOT1ynv78uUSd3eHpvmga0qAaD2Gxfw==}
+    peerDependencies:
+      '@better-auth/core': 1.5.3
+      '@better-auth/utils': ^0.3.0
+      '@prisma/client': ^5.0.0 || ^6.0.0 || ^7.0.0
+      prisma: ^5.0.0 || ^6.0.0 || ^7.0.0
 
   '@better-auth/telemetry@1.5.3':
     resolution: {integrity: sha512-ZX/r8AsWdB6BwH+Rb7H/SyJnGtPN6EDWrNxBQEDsqRrBJVcDLwAIz165P57RXci0WwtY872T0guKq+XVyy5rkA==}
@@ -3311,6 +3328,12 @@ packages:
     resolution: {integrity: sha512-8Ofs/AUQh8MaEcrlq5xOX0CQ9ypTF5dl78mjlMNfOK08fzpgTHQRQPBxcPlEtIw0yRpws+Zo/3r+5WRby7u3Gg==}
     engines: {node: '>= 0.6'}
 
+  next-themes@0.4.6:
+    resolution: {integrity: sha512-pZvgD5L0IEvX5/9GWyHMf3m8BKiVQwsCMHfoFosXtXBMnaS0ZnIJ9ST4b4NqLVKDEm8QBxoNNGNaBv2JNF6XNA==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
+
   next@16.1.6:
     resolution: {integrity: sha512-hkyRkcu5x/41KoqnROkfTm2pZVbKxvbZRuNvKXLRXxs3VfyO0WhY50TQS40EuKO9SW3rBj/sF3WbVwDACeMZyw==}
     engines: {node: '>=20.9.0'}
@@ -3881,6 +3904,12 @@ packages:
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
+
+  sonner@2.0.7:
+    resolution: {integrity: sha512-W6ZN4p58k8aDKA4XPcx2hpIQXBRAgyiWVkYhT7CvK6D3iAu7xjvVyhQHg2/iaKJZ1XVJ4r7XuwGL+WGEK37i9w==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -4530,6 +4559,13 @@ snapshots:
     dependencies:
       '@better-auth/core': 1.5.3(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.3.2(zod@3.25.76))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1)
       '@better-auth/utils': 0.3.1
+
+  '@better-auth/prisma-adapter@1.5.3(@better-auth/core@1.5.3(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.3.2(zod@3.25.76))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1))(@better-auth/utils@0.3.1)(@prisma/client@7.4.2(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3))(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))':
+    dependencies:
+      '@better-auth/core': 1.5.3(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.3.2(zod@3.25.76))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1)
+      '@better-auth/utils': 0.3.1
+      '@prisma/client': 7.4.2(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3)
+      prisma: 7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
 
   '@better-auth/telemetry@1.5.3(@better-auth/core@1.5.3(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.3.2(zod@3.25.76))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1))':
     dependencies:
@@ -6176,7 +6212,7 @@ snapshots:
 
   baseline-browser-mapping@2.10.0: {}
 
-  better-auth@1.5.3(@prisma/client@7.4.2(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3))(mysql2@3.15.3)(next@16.1.6(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(pg@8.19.0)(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  better-auth@1.5.3(@better-auth/prisma-adapter@1.5.3(@better-auth/core@1.5.3(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.3.2(zod@3.25.76))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1))(@better-auth/utils@0.3.1)(@prisma/client@7.4.2(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3))(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)))(@prisma/client@7.4.2(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3))(mysql2@3.15.3)(next@16.1.6(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(pg@8.19.0)(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       '@better-auth/core': 1.5.3(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.3.2(zod@3.25.76))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1)
       '@better-auth/kysely-adapter': 1.5.3(@better-auth/core@1.5.3(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.3.2(zod@3.25.76))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1))(@better-auth/utils@0.3.1)(kysely@0.28.11)
@@ -6193,6 +6229,7 @@ snapshots:
       nanostores: 1.1.1
       zod: 4.3.6
     optionalDependencies:
+      '@better-auth/prisma-adapter': 1.5.3(@better-auth/core@1.5.3(@better-auth/utils@0.3.1)(@better-fetch/fetch@1.1.21)(better-call@1.3.2(zod@3.25.76))(jose@6.1.3)(kysely@0.28.11)(nanostores@1.1.1))(@better-auth/utils@0.3.1)(@prisma/client@7.4.2(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3))(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))
       '@prisma/client': 7.4.2(prisma@7.4.2(@types/react@19.2.14)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3))(typescript@5.9.3)
       mysql2: 3.15.3
       next: 16.1.6(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -6627,8 +6664,8 @@ snapshots:
       '@next/eslint-plugin-next': 16.1.6
       eslint: 9.39.3(jiti@2.6.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1))
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.39.3(jiti@2.6.1))
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.3(jiti@2.6.1))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.39.3(jiti@2.6.1))
       eslint-plugin-react: 7.37.5(eslint@9.39.3(jiti@2.6.1))
       eslint-plugin-react-hooks: 7.0.1(eslint@9.39.3(jiti@2.6.1))
@@ -6650,7 +6687,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1)):
+  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@9.39.3(jiti@2.6.1)):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.3
@@ -6661,22 +6698,22 @@ snapshots:
       tinyglobby: 0.2.15
       unrs-resolver: 1.11.1
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1))
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.3(jiti@2.6.1))
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1)):
+  eslint-module-utils@2.12.1(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.3(jiti@2.6.1)):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3)
       eslint: 9.39.3(jiti@2.6.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.39.3(jiti@2.6.1))
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1)):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.3(jiti@2.6.1)):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.9
@@ -6687,7 +6724,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.39.3(jiti@2.6.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1)))(eslint@9.39.3(jiti@2.6.1))
+      eslint-module-utils: 2.12.1(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.3(jiti@2.6.1))
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3
@@ -7594,6 +7631,11 @@ snapshots:
 
   negotiator@1.0.0: {}
 
+  next-themes@0.4.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+
   next@16.1.6(@babel/core@7.29.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       '@next/env': 16.1.6
@@ -8330,6 +8372,11 @@ snapshots:
   signal-exit@4.1.0: {}
 
   sisteransi@1.0.5: {}
+
+  sonner@2.0.7(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
   source-map-js@1.2.1: {}
 
