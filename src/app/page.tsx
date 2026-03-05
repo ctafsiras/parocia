@@ -7,6 +7,7 @@ import BrandFeatureSection from '@/components/main/BrandFeatureSection';
 import StorySection from '@/components/main/StorySection';
 import UpdatesSection from '@/components/main/UpdatesSection';
 import CtaSection from '@/components/main/CtaSection';
+import ChangeMakersSection from '@/components/main/ChangeMakersSection';
 
 export default function Page() {
   return (
@@ -27,9 +28,10 @@ export default function Page() {
           subtitle="GET TO KNOW THE STORY BEHIND"
           title="OUR NEW GLOBAL BRAND AMBASSADORS"
           description="Meet Schwarzkopf's newest ambassadors, Celebrity Hairstylist Chris Appleton and Actress & Producer Sofia Vergara!"
-          linkText="FIND OUT MORE"
+          linkText="FIND INFO MORE"
           imageUrl="/hero-slide-1.webp"
         />
+
         <UpdatesSection
           subtitle="SKILLS & INSPIRATION"
           title="READ OUR LATEST UPDATES"
@@ -60,12 +62,29 @@ export default function Page() {
           buttonText="SALON FINDER"
           imageUrl="/bg-3.webp"
         />
-        <StorySection
-          subtitle="GET TO KNOW THE STORY BEHIND"
-          title="OUR NEW GLOBAL BRAND AMBASSADORS"
-          description="Meet Schwarzkopf's newest ambassadors, Celebrity Hairstylist Chris Appleton and Actress & Producer Sofia Vergara!"
-          linkText="FIND OUT MORE"
-          imageUrl="/hero-slide-1.webp"
+
+        <ChangeMakersSection
+          title="WE ARE CHANGE MAKERS. TOGETHER."
+          items={[
+            {
+              header: 'WE TRANSFORM HAIR',
+              description:
+                'Creating innovative products, stand out colours and exciting brands – to help YOU succeed.',
+            },
+            {
+              header: 'WE CREATE BEAUTY',
+              description:
+                'Developing transformational services – to strengthen YOUR offer.',
+            },
+            {
+              header: 'WE FUEL YOUR CREATIVITY',
+              description:
+                'Bringing you the latest hair trends via our inspiring ambassadors and key digital influencers – enabling YOU to stand out.',
+            },
+          ]}
+          footerHeader="WHY?"
+          footerText="BECAUSE TOGETHER WE MAKE CHANGE HAPPEN"
+          imageUrl="/change_makers_group.png"
         />
       </main>
     </>
