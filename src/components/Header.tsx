@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useRef, useCallback, useEffect } from 'react';
 
 /* ──────────────────────────────────────────────
@@ -157,26 +158,33 @@ export default function Header() {
   }, []);
 
   return (
-    <header ref={headerRef} className="absolute top-0 left-0 w-full z-50">
+    <header
+      ref={headerRef}
+      className={`absolute top-0 left-0 w-full z-50 ${activeMenu ? 'bg-white' : ''}`}
+    >
       {/* ── Announcement Bar ── */}
-      <div className="bg-brand-dark text-white text-center text-xs tracking-[0.2em] uppercase py-2.5 font-sans">
+      <div
+        className={`  text-center text-md font-semibold tracking-[0.2em] uppercase py-1.5 font-sans h-[70px] flex items-center justify-center  ${activeMenu ? 'text-[#1a1a1a] bg-white' : 'text-white bg-[#1a1a1a]'}`}
+      >
         <span className="mr-1">›</span> Complimentary shipping on all orders
         over $150
       </div>
 
       {/* ── Main Nav Bar ── */}
-      <nav className="relative">
+      <nav
+        className={`relative transition-colors duration-300 ${activeMenu ? 'bg-white' : ''}`}
+      >
         {/* Nav inner */}
-        <div className="flex items-center justify-between px-8 lg:px-12 py-4">
+        <div className="flex items-center justify-between px-8 lg:px-12 pb-4 pt-10">
           {/* Logo */}
-          <a href="/" className="flex-shrink-0 z-10">
+          <Link href="/" className="shrink-0 z-10">
             <span
               className="font-heading text-2xl lg:text-3xl font-semibold tracking-[0.04em] text-white transition-colors duration-300"
               style={{ color: activeMenu ? '#1A1A1A' : undefined }}
             >
               PAROCIA
             </span>
-          </a>
+          </Link>
 
           {/* Center nav links */}
           <ul
@@ -186,14 +194,14 @@ export default function Header() {
             {navItems.map((item) => (
               <li key={item} onMouseEnter={() => openMenu(item)}>
                 <button
-                  className="text-[13px] font-sans font-medium tracking-[0.15em] uppercase py-2 border-b-2 transition-colors duration-300"
+                  className="text-[16px] font-sans font-semibold tracking-[0.15em] uppercase py-2 border-b-2 transition-colors duration-300 hover:cursor-pointer"
                   style={{
-                    color: activeMenu ? '#1A1A1A' : '#fff',
+                    color: activeMenu ? '#1A1A1A' : '#1A1A1A',
                     borderColor:
                       activeMenu === item
                         ? activeMenu
                           ? '#1A1A1A'
-                          : '#fff'
+                          : '#1A1A1A'
                         : 'transparent',
                   }}
                 >
@@ -207,20 +215,20 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-6 z-10">
             <a
               href="#"
-              className="text-[11px] font-sans tracking-[0.12em] uppercase transition-colors duration-300"
-              style={{ color: activeMenu ? '#1A1A1A' : '#fff' }}
+              className="text-[11px] font-sans tracking-[0.12em] uppercase transition-colors duration-300 font-semibold"
+              style={{ color: activeMenu ? '#1A1A1A' : '#1a1a1a' }}
             >
               <span className="mr-1">◉</span> Store Locator
             </a>
             <a
               href="#"
-              className="text-[11px] font-sans tracking-[0.12em] uppercase transition-colors duration-300"
-              style={{ color: activeMenu ? '#1A1A1A' : '#fff' }}
+              className="text-[11px] font-sans tracking-[0.12em] uppercase transition-colors duration-300 font-semibold"
+              style={{ color: activeMenu ? '#1A1A1A' : '#1a1a1a' }}
             >
               Account
             </a>
             {/* Search icon */}
-            <button
+            {/* <button
               className="transition-colors duration-300"
               aria-label="Search"
             >
@@ -236,7 +244,7 @@ export default function Header() {
                 <circle cx="11" cy="11" r="7" />
                 <path d="M21 21l-4.35-4.35" />
               </svg>
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile hamburger */}
@@ -283,15 +291,15 @@ export default function Header() {
                 <div className="flex gap-20">
                   {megaMenuData[activeMenu].map((col) => (
                     <div key={col.title} className="min-w-[180px]">
-                      <p className="text-sm font-sans font-semibold tracking-[0.08em] text-brand-dark mb-4">
+                      <p className="text-base font-sans font-bold tracking-[0.08em] text-black mb-4">
                         {col.title}
                       </p>
-                      <ul className="space-y-3">
+                      <ul className="space-y-4">
                         {col.links.map((link) => (
                           <li key={link}>
                             <a
                               href="#"
-                              className="text-sm font-sans text-brand-muted hover:text-brand-dark transition-colors duration-200"
+                              className="text-base font-sans text-brand-muted hover:text-black transition-colors duration-200"
                             >
                               {link}
                             </a>

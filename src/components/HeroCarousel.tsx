@@ -15,7 +15,7 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    image: '/hero-slide-1.png',
+    image: '/hero-slide-1.webp',
     label: 'NEW ARRIVAL',
     heading: 'RADIANCE REVIVAL COLLECTION',
     description:
@@ -24,7 +24,7 @@ const slides: Slide[] = [
     ctaLink: '#',
   },
   {
-    image: '/hero-slide-2.png',
+    image: '/hero-slide-2.webp',
     label: 'HAIRCARE',
     heading: 'SILK RESTORE PROFESSIONAL 2026',
     description:
@@ -34,7 +34,7 @@ const slides: Slide[] = [
     darkText: true,
   },
   {
-    image: '/hero-slide-3.png',
+    image: '/hero-slide-3.webp',
     label: 'BESTSELLERS',
     heading: 'YOUR DAILY ESSENTIALS — REIMAGINED',
     description:
