@@ -8,6 +8,9 @@ import StorySection from '@/components/main/StorySection';
 import UpdatesSection from '@/components/main/UpdatesSection';
 import CtaSection from '@/components/main/CtaSection';
 import ChangeMakersSection from '@/components/main/ChangeMakersSection';
+import VideoIntroSection from '@/components/main/VideoIntroSection';
+import SocialFeedSection from '@/components/main/SocialFeedSection';
+import Footer from '@/components/main/Footer';
 
 export default function Page() {
   return (
@@ -86,7 +89,65 @@ export default function Page() {
           footerText="BECAUSE TOGETHER WE MAKE CHANGE HAPPEN"
           imageUrl="/change_makers_group.png"
         />
+
+        <VideoIntroSection
+          subtitle="ESTABLISHED IN 1898, INNOVATING EVER SINCE"
+          title="SCHWARZKOPF PROFESSIONAL"
+          imageUrl="/hero-slide-1.webp"
+          imageAlt="Schwarzkopf Professional Intro Video"
+        />
+
+        <SocialFeedSection
+          title="WANT MORE NEWS & INSPIRATION? FOLLOW US"
+          handle="@schwarzkopfpro"
+          buttonText="View More"
+          items={[
+            {
+              id: 1,
+              imageUrl: '/hero-slide-1.webp',
+              itemHandle: '@schwarzkopfpro',
+            },
+            {
+              id: 2,
+              imageUrl: '/hero-slide-2.webp',
+              itemHandle: '@schwarzkopfpro',
+            },
+            {
+              id: 3,
+              imageUrl: '/hero-slide-3.webp',
+              itemHandle: '@schwarzkopfpro',
+            },
+            { id: 4, imageUrl: '/bg-3.webp', itemHandle: '@schwarzkopfpro' },
+            {
+              id: 5,
+              imageUrl: '/hero-slide-1.webp',
+              itemHandle: '@hairby.kala',
+            },
+            {
+              id: 6,
+              imageUrl: '/hero-slide-2.webp',
+              itemHandle: '@omariikenyahair',
+            },
+            {
+              id: 7,
+              imageUrl: '/hero-slide-3.webp',
+              itemHandle: '@sotiros.hair',
+            },
+            { id: 8, imageUrl: '/bg-3.webp', itemHandle: '@hairocity_sa' },
+            {
+              id: 9,
+              imageUrl: '/hero-slide-1.webp',
+              itemHandle: '@schwarzkopfpro',
+            },
+            {
+              id: 10,
+              imageUrl: '/hero-slide-2.webp',
+              itemHandle: '@hvirby.mel',
+            },
+          ]}
+        />
       </main>
+      <Footer />
     </>
   );
 }
