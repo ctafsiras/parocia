@@ -138,6 +138,10 @@ const navItems = Object.keys(megaMenuData);
 
 export default function Header() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [mobileExpandedMenu, setMobileExpandedMenu] = useState<string | null>(
+    null,
+  );
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const headerRef = useRef<HTMLDivElement>(null);
 
@@ -157,14 +161,26 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  /* Lock body scroll when mobile menu is open */
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileOpen]);
+
   return (
     <header
       ref={headerRef}
-      className={`absolute top-0 left-0 w-full z-50 ${activeMenu ? 'bg-white' : ''}`}
+      className={`absolute top-0 left-0 w-full z-50 transition-colors duration-300 ${activeMenu || isMobileOpen ? 'bg-white' : ''}`}
     >
       {/* ── Announcement Bar ── */}
       <div
-        className={`  text-center text-md font-semibold tracking-[0.2em] uppercase py-1.5 font-sans h-[70px] flex items-center justify-center  ${activeMenu ? 'text-[#1a1a1a] bg-white' : 'text-white bg-[#1a1a1a]'}`}
+        className={`relative z-50 text-center text-[10px] md:text-sm font-semibold tracking-[0.2em] uppercase py-1.5 font-sans h-[60px] md:h-[70px] flex items-center justify-center transition-colors duration-300 ${activeMenu || isMobileOpen ? 'text-[#1a1a1a] bg-white' : 'text-white bg-[#1a1a1a]'}`}
       >
         <span className="mr-1">›</span> Complimentary shipping on all orders
         over $150
@@ -172,15 +188,17 @@ export default function Header() {
 
       {/* ── Main Nav Bar ── */}
       <nav
-        className={`relative transition-colors duration-300 ${activeMenu ? 'bg-white' : ''}`}
+        className={`relative transition-colors duration-300 ${activeMenu || isMobileOpen ? 'bg-white' : ''}`}
       >
         {/* Nav inner */}
-        <div className="flex items-center justify-between px-8 lg:px-12 pb-4 pt-10">
+        <div className="flex items-center justify-between px-6 md:px-8 xl:px-12 pb-4 pt-6 md:pt-10">
           {/* Logo */}
-          <Link href="/" className="shrink-0 z-10">
+          <Link href="/" className="shrink-0 z-50 relative">
             <span
-              className="font-heading text-2xl lg:text-3xl font-semibold tracking-[0.04em] text-white transition-colors duration-300"
-              style={{ color: activeMenu ? '#1A1A1A' : undefined }}
+              className="font-heading text-xl md:text-2xl xl:text-3xl font-semibold tracking-[0.04em] transition-colors duration-300"
+              style={{
+                color: activeMenu || isMobileOpen ? '#1A1A1A' : 'white',
+              }}
             >
               PAROCIA
             </span>
@@ -188,7 +206,7 @@ export default function Header() {
 
           {/* Center nav links */}
           <ul
-            className="hidden lg:flex items-center gap-8 xl:gap-10 absolute left-1/2 -translate-x-1/2"
+            className="hidden xl:flex items-center gap-8 xl:gap-10 absolute left-1/2 -translate-x-1/2"
             onMouseLeave={closeMenu}
           >
             {navItems.map((item) => (
@@ -212,7 +230,7 @@ export default function Header() {
           </ul>
 
           {/* Right utilities */}
-          <div className="hidden lg:flex items-center gap-6 z-10">
+          <div className="hidden xl:flex items-center gap-6 z-10">
             <a
               href="#"
               className="text-[11px] font-sans tracking-[0.12em] uppercase transition-colors duration-300 font-semibold"
@@ -227,38 +245,38 @@ export default function Header() {
             >
               Account
             </a>
-            {/* Search icon */}
-            {/* <button
-              className="transition-colors duration-300"
-              aria-label="Search"
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                strokeWidth="2"
-                stroke={activeMenu ? '#1A1A1A' : '#fff'}
-                className="transition-colors duration-300"
-              >
-                <circle cx="11" cy="11" r="7" />
-                <path d="M21 21l-4.35-4.35" />
-              </svg>
-            </button> */}
           </div>
 
           {/* Mobile hamburger */}
-          <button className="lg:hidden z-10" aria-label="Menu">
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="2"
-            >
-              <path d="M3 12h18M3 6h18M3 18h18" />
-            </svg>
+          <button
+            className="xl:hidden z-50 relative p-2 -mr-2 transition-colors duration-300"
+            aria-label="Menu"
+            onClick={() => setIsMobileOpen(!isMobileOpen)}
+            style={{ color: activeMenu || isMobileOpen ? '#1A1A1A' : 'white' }}
+          >
+            {isMobileOpen ? (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M3 12h18M3 6h18M3 18h18" />
+              </svg>
+            )}
           </button>
         </div>
 
@@ -269,6 +287,91 @@ export default function Header() {
             backgroundColor: activeMenu ? '#e0ddd9' : 'rgba(255,255,255,0.2)',
           }}
         />
+
+        {/* ── Mobile Menu Panel ── */}
+        <div
+          className="xl:hidden fixed inset-0 w-full h-dvh bg-white overflow-y-auto transition-all duration-400 ease-in-out z-40"
+          style={{
+            opacity: isMobileOpen ? 1 : 0,
+            pointerEvents: isMobileOpen ? 'auto' : 'none',
+          }}
+        >
+          {/* Pad top to account for the header (announcement + nav inner) */}
+          <div
+            className="flex flex-col px-6 md:px-8 pb-24 pt-[110px] md:pt-[130px] transition-transform duration-500 ease-out"
+            style={{
+              transform: isMobileOpen ? 'translateY(0)' : 'translateY(-20px)',
+            }}
+          >
+            {navItems.map((item) => (
+              <div
+                key={item}
+                className="border-b border-gray-100 last:border-b-0"
+              >
+                <button
+                  className="w-full flex items-center justify-between py-5 text-sm md:text-base font-sans font-semibold tracking-[0.15em] uppercase text-[#1a1a1a]"
+                  onClick={() =>
+                    setMobileExpandedMenu(
+                      mobileExpandedMenu === item ? null : item,
+                    )
+                  }
+                >
+                  {item}
+                  <span className="text-xl leading-none font-light">
+                    {mobileExpandedMenu === item ? '−' : '+'}
+                  </span>
+                </button>
+
+                {/* Accordion Content */}
+                <div
+                  className="overflow-hidden transition-all duration-300 ease-in-out"
+                  style={{
+                    maxHeight: mobileExpandedMenu === item ? '1000px' : '0',
+                    opacity: mobileExpandedMenu === item ? 1 : 0,
+                  }}
+                >
+                  <div className="pb-6 pl-2 flex flex-col gap-6">
+                    {megaMenuData[item].map((col) => (
+                      <div key={col.title}>
+                        <p className="text-xs md:text-sm font-sans font-bold tracking-[0.08em] text-black mb-3">
+                          {col.title}
+                        </p>
+                        <ul className="space-y-3">
+                          {col.links.map((link) => (
+                            <li key={link}>
+                              <a
+                                href="#"
+                                className="text-sm font-sans text-gray-500 hover:text-black transition-colors duration-200"
+                              >
+                                {link}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Mobile Utilities */}
+            <div className="mt-8 pt-8 border-t border-gray-200 flex flex-col gap-6">
+              <a
+                href="#"
+                className="text-xs md:text-sm font-sans tracking-[0.12em] uppercase font-semibold text-[#1a1a1a]"
+              >
+                <span className="mr-2">◉</span> Store Locator
+              </a>
+              <a
+                href="#"
+                className="text-xs md:text-sm font-sans tracking-[0.12em] uppercase font-semibold text-[#1a1a1a]"
+              >
+                Account
+              </a>
+            </div>
+          </div>
+        </div>
 
         {/* ── Mega Menu Panel ── */}
         <div
