@@ -10,6 +10,7 @@
     "lint": "eslint",
     "generate": "prisma generate",
     "migrate": "prisma migrate dev",
+    "seed": "prisma db seed",
     "postinstall": "prisma generate"
   },
   "dependencies": {
