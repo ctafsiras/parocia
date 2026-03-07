@@ -127,3 +127,44 @@ model Product {
   @@index([categoryId])
   @@map("product")
 }
+
+model StaticPageSeo {
+  pageKey          String   @id
+  metaTitle        String?
+  metaDescription  String?
+  canonicalPath    String?
+  ogTitle          String?
+  ogDescription    String?
+  ogImage          String?
+  robotsIndex      Boolean  @default(true)
+  robotsFollow     Boolean  @default(true)
+  includeInSitemap Boolean  @default(true)
+  schemaMarkup     String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@map("static_page_seo")
+}
+
+model SiteSeoSettings {
+  id                     String   @id @default("default")
+  siteName               String
+  siteUrl                String   @unique
+  defaultTitle           String?
+  titleTemplate          String?
+  defaultDescription     String?
+  defaultOgImage         String?
+  defaultRobotsIndex     Boolean  @default(true)
+  defaultRobotsFollow    Boolean  @default(true)
+  robotsDisallowPaths    String?
+  googleSiteVerification String?
+  bingSiteVerification   String?
+  organizationName       String?
+  organizationLogo       String?
+  organizationSchema     String?
+  websiteSchema          String?
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  @@map("site_seo_settings")
+}

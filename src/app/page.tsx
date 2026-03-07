@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Header from '@/components/main/Header';
 import HeroCarousel from '@/components/main/HeroCarousel';
 import CategorySection from '@/components/main/CategorySection';
@@ -11,10 +12,33 @@ import ChangeMakersSection from '@/components/main/ChangeMakersSection';
 import VideoIntroSection from '@/components/main/VideoIntroSection';
 import SocialFeedSection from '@/components/main/SocialFeedSection';
 import Footer from '@/components/main/Footer';
+import { buildStaticPageMetadata } from '@/lib/seo/metadata';
+import { getSiteSeoSettings, getStaticPageSeo } from '@/lib/seo/queries';
+import { getJsonLdScriptPayload } from '@/lib/seo/schema';
+import { getStaticPageByKey } from '@/lib/seo/static-pages';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = getStaticPageByKey('home');
+  if (!page) {
+    return {};
+  }
+
+  const [siteSettings, pageSeo] = await Promise.all([
+    getSiteSeoSettings(),
+    getStaticPageSeo(page.key),
+  ]);
+
+  return buildStaticPageMetadata({
+    page,
+    pageSeo,
+    siteSettings,
+  });
+}
 
 export default function Page() {
   return (
     <>
+      <HomepageSchemaScripts />
       {/* Header + Hero share the same visual space */}
       <div className="relative">
         <Header />
@@ -150,4 +174,17 @@ export default function Page() {
       <Footer />
     </>
   );
+}
+
+async function HomepageSchemaScripts() {
+  const pageSeo = await getStaticPageSeo('home');
+  const schemas = getJsonLdScriptPayload(pageSeo?.schemaMarkup);
+
+  return schemas.map((schema, index) => (
+    <script
+      key={`home-schema-${index}`}
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  ));
 }

@@ -6,6 +6,7 @@ import {
   LayoutDashboard,
   Package,
   FolderTree,
+  Search,
   Sparkles,
 } from "lucide-react";
 import {
@@ -40,6 +41,11 @@ const navItems = [
     title: "Categories",
     href: "/admin/categories",
     icon: FolderTree,
+  },
+  {
+    title: "SEO",
+    href: "/admin/seo",
+    icon: Search,
   },
 ];
 
@@ -119,13 +125,24 @@ function Breadcrumb({ pathname }: { pathname: string }) {
   if (segments[0] === "admin") {
     breadcrumbs.push({ label: "Admin", href: "/admin" });
     if (segments[1]) {
-      const section = segments[1].charAt(0).toUpperCase() + segments[1].slice(1);
+      const section = formatSegmentLabel(segments[1]);
       if (segments.length === 2) {
         breadcrumbs.push({ label: section });
       } else {
         breadcrumbs.push({ label: section, href: `/admin/${segments[1]}` });
         if (segments[2] === "new") {
           breadcrumbs.push({ label: "New" });
+        } else if (segments[2] === "settings") {
+          breadcrumbs.push({ label: "Settings" });
+        } else if (segments[2] === "pages") {
+          if (segments.length === 3) {
+            breadcrumbs.push({ label: "Pages" });
+          } else {
+            breadcrumbs.push({ label: "Pages", href: "/admin/seo/pages" });
+            if (segments[4] === "edit") {
+              breadcrumbs.push({ label: "Edit" });
+            }
+          }
         } else if (segments[3] === "edit") {
           breadcrumbs.push({ label: "Edit" });
         }
@@ -152,4 +169,15 @@ function Breadcrumb({ pathname }: { pathname: string }) {
       ))}
     </nav>
   );
+}
+
+function formatSegmentLabel(segment: string) {
+  if (segment.toLowerCase() === "seo") {
+    return "SEO";
+  }
+
+  return segment
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
 }
