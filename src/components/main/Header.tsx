@@ -9,6 +9,8 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 interface MenuColumn {
   title: string;
   links: string[];
+  /** Optional map of link label → href. Falls back to '#' when omitted. */
+  hrefs?: Record<string, string>;
 }
 
 const megaMenuData: Record<string, MenuColumn[]> = {
@@ -122,10 +124,19 @@ const megaMenuData: Record<string, MenuColumn[]> = {
     {
       title: 'Our Story',
       links: ['Brand Heritage', 'Philosophy', 'Sustainability', 'Ingredients'],
+      hrefs: {
+        'Brand Heritage': '/about#heritage',
+        'Philosophy': '/about#philosophy',
+        'Sustainability': '/about#sustainability',
+        'Ingredients': '/about#ingredients',
+      },
     },
     {
       title: 'Community',
       links: ['Journal', 'Events', 'Ambassadors'],
+      hrefs: {
+        'Ambassadors': '/about#ambassadors',
+      },
     },
     {
       title: 'Support',
@@ -340,7 +351,7 @@ export default function Header() {
                           {col.links.map((link) => (
                             <li key={link}>
                               <a
-                                href="#"
+                                href={col.hrefs?.[link] ?? '#'}
                                 className="text-sm font-sans text-gray-500 hover:text-black transition-colors duration-200"
                               >
                                 {link}
@@ -397,17 +408,17 @@ export default function Header() {
                       <p className="text-base font-sans font-bold tracking-[0.08em] text-black mb-4">
                         {col.title}
                       </p>
-                      <ul className="space-y-4">
-                        {col.links.map((link) => (
-                          <li key={link}>
-                            <a
-                              href="#"
-                              className="text-base font-sans text-brand-muted hover:text-black transition-colors duration-200"
-                            >
-                              {link}
-                            </a>
-                          </li>
-                        ))}
+                        <ul className="space-y-4">
+                          {col.links.map((link) => (
+                            <li key={link}>
+                              <a
+                                href={col.hrefs?.[link] ?? '#'}
+                                className="text-base font-sans text-brand-muted hover:text-black transition-colors duration-200"
+                              >
+                                {link}
+                              </a>
+                            </li>
+                          ))}
                       </ul>
                     </div>
                   ))}

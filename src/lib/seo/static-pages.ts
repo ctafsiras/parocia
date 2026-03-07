@@ -4,6 +4,11 @@ export const STATIC_PAGES = [
     label: "Homepage",
     path: "/",
   },
+  {
+    key: "about",
+    label: "About Us",
+    path: "/about",
+  },
 ] as const;
 
 export type StaticPage = (typeof STATIC_PAGES)[number];
